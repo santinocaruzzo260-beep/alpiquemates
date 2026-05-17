@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mates Alpique — Precio y Calidad · Mates artesanales</title>
+<meta name="description" content="Mates Alpique · Mates y bombillas artesanales seleccionados uno por uno. Precio y calidad para los que toman al pique." />
+<link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bordo: #6b2a1f;
+    --bordo-oscuro: #4a1c14;
+    --bordo-claro: #8a3a2a;
+    --crema: #f1e7d2;
+    --crema-claro: #faf5e8;
+    --crema-papel: #f5ecd6;
+    --dorado: #d4a55c;
+    --cuero: #8b4a26;
+    --tinta: #1a1410;
+    --gris: #6c6356;
+    --linea: rgba(107,42,31,.12);
+    --radius: 16px;
+    --maxw: 1240px;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    background:var(--crema-claro);
+    color:var(--tinta);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .display{font-family:'Fraunces',Georgia,serif;font-weight:700;letter-spacing:-.02em;line-height:1.02}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:fixed;inset:0 0 auto 0;z-index:50;
+    backdrop-filter:saturate(140%) blur(10px);
+    background:rgba(250,245,232,.85);
+    border-bottom:1px solid rgba(107,42,31,.08);
+    transition:background .3s var(--ease), box-shadow .3s;
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--bordo)}
+  .brand-text{font-family:'Fraunces',serif;font-weight:700;font-size:20px;letter-spacing:.02em;color:var(--bordo);line-height:1}
+  .brand-tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);margin-top:2px}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--bordo);transition:opacity .2s}
+  .nav-links a:hover{opacity:.65}
+  .nav-cta{
+    background:var(--bordo);color:var(--crema-claro)!important;
+    padding:11px 20px;border-radius:999px;font-size:13px;font-weight:600;
+    transition:transform .2s var(--ease),background .2s;
+  }
+  .nav-cta:hover{transform:translateY(-1px);background:var(--bordo-oscuro);opacity:1!important}
+  .burger{display:none;background:none;border:0;cursor:pointer;width:36px;height:36px;flex-direction:column;justify-content:center;align-items:center;gap:5px}
+  .burger span{display:block;width:22px;height:2px;background:var(--bordo);border-radius:2px;transition:.3s}
+  @media (max-width:880px){
+    .nav-links{display:none;position:absolute;top:76px;left:0;right:0;background:var(--crema-claro);flex-direction:column;padding:24px;gap:18px;border-bottom:1px solid var(--linea)}
+    .nav-links.open{display:flex}
+    .burger{display:flex}
+    .brand-tag{display:none}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:140px 0 80px;
+    background:
+      radial-gradient(1100px 600px at 90% 5%, rgba(212,165,92,.22), transparent 60%),
+      radial-gradient(900px 700px at 5% 95%, rgba(107,42,31,.10), transparent 60%),
+      linear-gradient(180deg,#faf5e8 0%, #f1e7d2 100%);
+    overflow:hidden;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--bordo);margin-bottom:24px;
+  }
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--bordo)}
+  .hero h1{font-size:clamp(46px,7vw,92px);color:var(--bordo)}
+  .hero h1 em{font-style:italic;color:var(--cuero);font-weight:400}
+  .hero p{margin-top:24px;font-size:18px;max-width:520px;color:#3a3329}
+  .hero-ctas{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 26px;border-radius:999px;font-weight:600;font-size:15px;
+    transition:transform .2s var(--ease), box-shadow .2s, background .2s;
+    cursor:pointer;border:0;
+  }
+  .btn-primary{background:var(--bordo);color:var(--crema-claro)}
+  .btn-primary:hover{background:var(--bordo-oscuro);transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(107,42,31,.45)}
+  .btn-ghost{background:transparent;color:var(--bordo);border:1.5px solid var(--bordo)}
+  .btn-ghost:hover{background:var(--bordo);color:var(--crema-claro)}
+  .arrow{transition:transform .2s}
+  .btn:hover .arrow{transform:translateX(4px)}
+
+  .hero-stats{margin-top:60px;display:flex;gap:48px;flex-wrap:wrap}
+  .stat .n{font-family:'Fraunces',serif;font-size:36px;font-weight:700;color:var(--bordo);line-height:1}
+  .stat .l{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#6c6356;margin-top:6px}
+
+  .hero-art{position:relative;height:560px;display:flex;align-items:center;justify-content:center}
+  .hero-photo{
+    position:relative;width:440px;max-width:100%;aspect-ratio:4/5;
+    background:linear-gradient(160deg, #fff, #faf2dd);
+    border-radius:28px;overflow:hidden;
+    box-shadow:0 50px 90px -30px rgba(107,42,31,.4), inset 0 1px 0 rgba(255,255,255,.5);
+    transform:rotate(-3deg);
+    transition:transform .6s var(--ease);
+  }
+  .hero-photo:hover{transform:rotate(0) scale(1.02)}
+  .hero-photo img{width:100%;height:100%;object-fit:contain;padding:30px;background:#fff}
+  .hero-photo .tag{
+    position:absolute;top:22px;left:22px;
+    background:var(--bordo);color:var(--crema-claro);
+    font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
+    padding:7px 12px;border-radius:999px;
+  }
+  .hero-photo .price-box{
+    position:absolute;bottom:22px;right:22px;text-align:right;
+    background:rgba(255,255,255,.92);padding:10px 16px;border-radius:12px;
+    backdrop-filter:blur(8px);
+  }
+  .hero-photo .price-box .p{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--bordo);line-height:1}
+  .hero-photo .price-box .l{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gris);margin-top:4px}
+
+  .float{animation:float 6s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-14px) rotate(-3deg)}}
+  .hero-photo.float{animation:float 6s ease-in-out infinite}
+
+  .floating-chip{
+    position:absolute;background:#fff;color:var(--bordo);
+    padding:12px 18px;border-radius:14px;font-size:13px;font-weight:600;
+    box-shadow:0 20px 40px -15px rgba(0,0,0,.25);
+    display:flex;align-items:center;gap:10px;
+    z-index:3;
+  }
+  .chip-1{top:50px;right:-10px;animation:float2 5s ease-in-out infinite}
+  .chip-2{bottom:80px;left:-20px;animation:float2 7s ease-in-out infinite reverse}
+  .chip .dot{width:8px;height:8px;border-radius:50%;background:var(--bordo)}
+  @keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+  @media (max-width:900px){
+    .hero{padding:120px 0 60px}
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hero-art{height:480px}
+    .hero-photo{width:360px}
+    .hero-stats{gap:32px;margin-top:40px}
+  }
+
+  /* ---------- Marquee ---------- */
+  .marquee{
+    background:var(--bordo);color:var(--crema-claro);
+    padding:18px 0;overflow:hidden;
+    border-top:1px solid rgba(0,0,0,.1);border-bottom:1px solid rgba(0,0,0,.1);
+  }
+  .marquee-track{display:flex;gap:60px;white-space:nowrap;animation:scroll 30s linear infinite;font-family:'Fraunces',serif;font-size:22px;font-style:italic;}
+  .marquee-track span{display:inline-flex;align-items:center;gap:60px}
+  .marquee-track span::after{content:"●";color:var(--dorado);font-size:13px;font-style:normal}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- Section base ---------- */
+  section{padding:110px 0;position:relative}
+  .sec-head{max-width:780px;margin:0 auto 56px;text-align:center}
+  .sec-head .eyebrow{justify-content:center}
+  .sec-head .eyebrow::before{display:none}
+  .sec-head h2{font-family:'Fraunces',serif;font-size:clamp(34px,5vw,58px);color:var(--bordo);line-height:1.05}
+  .sec-head h2 em{font-style:italic;color:var(--cuero);font-weight:400}
+  .sec-head p{margin-top:18px;font-size:17px;color:#5a5347}
+
+  /* ---------- Productos ---------- */
+  .productos{background:var(--crema-claro)}
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  @media (max-width:980px){.prod-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:620px){.prod-grid{grid-template-columns:1fr}}
+  .prod{
+    background:#fff;border-radius:var(--radius);overflow:hidden;
+    box-shadow:0 1px 0 rgba(107,42,31,.06), 0 20px 40px -25px rgba(107,42,31,.2);
+    transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+    display:flex;flex-direction:column;
+    border:1px solid rgba(107,42,31,.05);
+  }
+  .prod:hover{transform:translateY(-6px);box-shadow:0 30px 60px -25px rgba(107,42,31,.32)}
+  .prod-img{
+    aspect-ratio:4/5;position:relative;overflow:hidden;
+    background:linear-gradient(160deg,#fdf6e3,#f5ecd6);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .prod-img img{width:100%;height:100%;object-fit:contain;padding:18px;transition:transform .5s var(--ease)}
+  .prod:hover .prod-img img{transform:scale(1.05)}
+  .badge{
+    position:absolute;top:14px;left:14px;
+    background:var(--bordo);color:var(--crema-claro);
+    font-size:10px;font-weight:600;padding:6px 12px;border-radius:999px;
+    letter-spacing:.14em;text-transform:uppercase;z-index:2;
+  }
+  .badge.gold{background:var(--dorado);color:var(--bordo-oscuro)}
+  .prod-body{padding:22px 22px 24px}
+  .prod h3{font-family:'Fraunces',serif;font-size:22px;color:var(--bordo);margin-bottom:6px}
+  .prod .desc{font-size:14px;color:#6c6356;min-height:42px}
+  .prod-foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:18px;border-top:1px dashed rgba(107,42,31,.18)}
+  .price-tag{font-family:'Fraunces',serif;font-size:24px;font-weight:700;color:var(--bordo)}
+  .prod-btn{
+    background:var(--bordo);color:var(--crema-claro);
+    padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;
+    transition:background .2s;
+  }
+  .prod-btn:hover{background:var(--cuero)}
+
+  /* ---------- Sold out (sin stock) ---------- */
+  .prod.sold-out .prod-img img{opacity:.55;filter:grayscale(.45)}
+  .prod.sold-out:hover .prod-img img{transform:none}
+  .prod.sold-out .price-tag{color:var(--gris);text-decoration:line-through}
+  .badge.sold-out-badge{background:#5a5347;color:var(--crema-claro)}
+  .sold-out-btn{background:#bdb6a9!important;color:#fff!important;cursor:not-allowed!important;pointer-events:none}
+
+  /* ---------- Review form ---------- */
+  .review-form{background:linear-gradient(180deg,var(--crema-claro) 0%, var(--crema-papel) 100%)}
+  .rf-card{
+    max-width:760px;margin:0 auto;background:#fff;
+    border-radius:24px;padding:48px 40px;
+    box-shadow:0 30px 60px -30px rgba(107,42,31,.25);
+    border:1px solid rgba(107,42,31,.06);
+  }
+  @media (max-width:620px){.rf-card{padding:32px 22px}}
+  .rf-head{text-align:center;margin-bottom:32px}
+  .rf-head .eyebrow{justify-content:center;margin-bottom:12px}
+  .rf-head .eyebrow::before{display:none}
+  .rf-head h3{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,40px);color:var(--bordo);line-height:1.1}
+  .rf-head h3 em{font-style:italic;color:var(--cuero);font-weight:400}
+  .rf-head p{margin-top:12px;font-size:15px;color:#6c6356;max-width:480px;margin-left:auto;margin-right:auto}
+  .rf-form{display:flex;flex-direction:column;gap:14px}
+  .rf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:540px){.rf-row{grid-template-columns:1fr}}
+  .rf-form input, .rf-form textarea{
+    width:100%;padding:14px 16px;border:1px solid rgba(107,42,31,.15);border-radius:12px;
+    font-family:inherit;font-size:15px;background:var(--crema-claro);color:var(--tinta);
+    transition:border-color .2s, background .2s;
+  }
+  .rf-form input:focus, .rf-form textarea:focus{outline:none;border-color:var(--bordo);background:#fff}
+  .rf-form textarea{resize:vertical;min-height:90px;line-height:1.5}
+  .rf-rating{display:flex;align-items:center;gap:14px;padding:6px 4px}
+  .rf-label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);font-weight:600}
+  .rf-stars{display:flex;gap:4px}
+  .rf-stars button{
+    background:none;border:0;cursor:pointer;
+    font-size:32px;color:rgba(107,42,31,.18);
+    padding:2px 4px;line-height:1;
+    transition:color .15s,transform .15s;
+  }
+  .rf-stars button:hover{transform:scale(1.1)}
+  .rf-stars button.filled{color:var(--dorado)}
+  .rf-submit{
+    background:#25D366;color:#fff;border:0;padding:15px 20px;border-radius:12px;
+    font-weight:700;font-size:15px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    transition:transform .2s var(--ease),background .2s;margin-top:6px;
+  }
+  .rf-submit:hover{background:#1da851;transform:translateY(-1px)}
+  .rf-submit svg{width:18px;height:18px}
+
+  /* ---------- Footer credit ---------- */
+  .credit{
+    margin-top:16px;padding-top:20px;border-top:1px solid rgba(241,231,210,.1);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;
+    font-size:12px;color:rgba(241,231,210,.5);
+  }
+  .credit a{color:var(--dorado);font-weight:600;transition:color .2s}
+  .credit a:hover{color:var(--crema-claro)}
+
+  /* ---------- Bombillas ---------- */
+  .bombillas{background:var(--crema-papel);position:relative}
+  .bombillas::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(600px 400px at 50% 0%, rgba(212,165,92,.15), transparent 70%);
+    pointer-events:none;
+  }
+  .bomb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative}
+  @media (max-width:820px){.bomb-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}}
+  .bomb{
+    background:#fff;border-radius:var(--radius);overflow:hidden;
+    box-shadow:0 20px 40px -25px rgba(107,42,31,.25);
+    transition:transform .3s var(--ease);
+    border:1px solid rgba(107,42,31,.05);
+  }
+  .bomb:hover{transform:translateY(-4px)}
+  .bomb-img{
+    aspect-ratio:3/4;background:linear-gradient(160deg,#fdf6e3,#f5ecd6);
+    display:flex;align-items:center;justify-content:center;padding:24px;
+  }
+  .bomb-img img{height:100%;width:auto;max-width:100%;object-fit:contain;transition:transform .4s var(--ease)}
+  .bomb:hover .bomb-img img{transform:scale(1.06)}
+  .bomb-body{padding:22px}
+  .bomb h3{font-family:'Fraunces',serif;font-size:20px;color:var(--bordo);margin-bottom:6px}
+  .bomb .desc{font-size:13px;color:#6c6356;min-height:38px}
+  .bomb-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:16px;border-top:1px dashed rgba(107,42,31,.18)}
+
+  /* ---------- Historia ---------- */
+  .historia{
+    background:var(--bordo);color:var(--crema-claro);
+    position:relative;overflow:hidden;
+  }
+  .historia::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(800px 500px at 90% 10%,rgba(212,165,92,.18),transparent 60%);
+    pointer-events:none;
+  }
+  .historia .sec-head h2{color:var(--crema-claro)}
+  .historia .sec-head p{color:rgba(241,231,210,.78)}
+  .historia .sec-head .eyebrow{color:var(--dorado)}
+  .historia-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:40px}
+  @media (max-width:900px){.historia-grid{grid-template-columns:1fr;gap:48px}}
+  .historia h3{font-family:'Fraunces',serif;font-size:36px;line-height:1.1;margin-bottom:20px}
+  .historia h3 em{color:var(--dorado);font-style:italic;font-weight:400}
+  .historia p.lead{font-size:17px;color:rgba(241,231,210,.88)}
+  .pills{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
+  .pill{padding:8px 16px;border:1px solid rgba(241,231,210,.25);border-radius:999px;font-size:13px;color:var(--crema-claro)}
+
+  .historia-art{position:relative;display:flex;align-items:center;justify-content:center}
+  .historia-photo{
+    width:100%;max-width:440px;aspect-ratio:4/5;
+    background:#fff;border-radius:var(--radius);overflow:hidden;
+    box-shadow:0 40px 80px -30px rgba(0,0,0,.5);
+    transform:rotate(2deg);
+  }
+  .historia-photo img{width:100%;height:100%;object-fit:contain;padding:30px;background:#fff}
+
+  /* ---------- Proceso ---------- */
+  .proceso{background:var(--crema-claro)}
+  .pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:30px}
+  @media (max-width:980px){.pasos{grid-template-columns:1fr 1fr}}
+  @media (max-width:540px){.pasos{grid-template-columns:1fr}}
+  .paso{
+    background:#fff;padding:32px 28px;border-radius:var(--radius);
+    border:1px solid rgba(107,42,31,.07);
+    transition:transform .3s var(--ease);
+    position:relative;
+  }
+  .paso:hover{transform:translateY(-4px)}
+  .paso-num{
+    font-family:'Fraunces',serif;font-size:48px;font-weight:700;
+    color:var(--bordo);line-height:1;opacity:.22;
+  }
+  .paso h4{font-family:'Fraunces',serif;font-size:22px;color:var(--bordo);margin:14px 0 8px}
+  .paso p{font-size:14px;color:#6c6356}
+
+  /* ---------- Testimonios ---------- */
+  .testi{background:#fff}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media (max-width:900px){.testi-grid{grid-template-columns:1fr}}
+  .testi-card{
+    background:var(--crema-claro);padding:32px;border-radius:var(--radius);
+    position:relative;
+  }
+  .quote{font-family:'Fraunces',serif;font-size:54px;color:var(--bordo);line-height:1;position:absolute;top:18px;right:24px;opacity:.35}
+  .testi-card p{font-size:15px;color:#3a3329;line-height:1.7}
+  .testi-author{margin-top:20px;display:flex;align-items:center;gap:12px}
+  .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--bordo),var(--dorado));display:flex;align-items:center;justify-content:center;color:var(--crema-claro);font-weight:700;font-family:'Fraunces',serif}
+  .testi-name{font-weight:600;font-size:14px;color:var(--bordo)}
+  .testi-meta{font-size:12px;color:#8a8273}
+  .stars{display:flex;gap:2px;margin-bottom:14px;color:var(--dorado);font-size:14px}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    background:linear-gradient(135deg,var(--bordo),var(--bordo-oscuro));
+    color:var(--crema-claro);text-align:center;
+  }
+  .cta h2{font-family:'Fraunces',serif;font-size:clamp(40px,6vw,70px);line-height:1.05;color:var(--crema-claro)}
+  .cta h2 em{font-style:italic;color:var(--dorado);font-weight:400}
+  .cta p{margin-top:18px;font-size:17px;color:rgba(241,231,210,.85);max-width:520px;margin-left:auto;margin-right:auto}
+  .cta .btn-primary{background:var(--crema-claro);color:var(--bordo);margin-top:32px}
+  .cta .btn-primary:hover{background:#fff}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--bordo-oscuro);color:var(--crema-claro);padding:64px 0 32px}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;gap:32px}}
+  .foot-brand{display:flex;flex-direction:column;gap:14px}
+  .foot-brand img{width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,165,92,.4)}
+  .foot-brand .name{font-family:'Fraunces',serif;font-size:22px;color:var(--crema-claro);font-weight:700}
+  .foot-brand p{color:rgba(241,231,210,.65);font-size:14px;max-width:320px}
+  .foot-title{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--dorado);margin-bottom:18px;font-weight:600}
+  .foot-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .foot-list a{color:rgba(241,231,210,.78);font-size:14px;transition:color .2s}
+  .foot-list a:hover{color:var(--crema-claro)}
+  .foot-bottom{padding-top:24px;border-top:1px solid rgba(241,231,210,.12);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;color:rgba(241,231,210,.5);font-size:13px}
+  .socials{display:flex;gap:12px}
+  .socials a{
+    width:38px;height:38px;border-radius:50%;border:1px solid rgba(241,231,210,.22);
+    display:flex;align-items:center;justify-content:center;transition:all .2s;
+  }
+  .socials a:hover{background:var(--dorado);border-color:var(--dorado);color:var(--bordo-oscuro)}
+  .socials svg{width:16px;height:16px}
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- Cart button (nav) ---------- */
+  .cart-btn{
+    position:relative;background:var(--bordo);color:var(--crema-claro);border:0;cursor:pointer;
+    width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    transition:transform .2s var(--ease),background .2s;
+  }
+  .cart-btn:hover{background:var(--bordo-oscuro);transform:translateY(-1px)}
+  .cart-btn svg{width:20px;height:20px}
+  .cart-count{
+    position:absolute;top:-4px;right:-4px;background:var(--dorado);color:var(--bordo-oscuro);
+    font-size:11px;font-weight:700;min-width:20px;height:20px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;padding:0 6px;
+    border:2px solid var(--crema-claro);
+    transform:scale(0);transition:transform .25s var(--ease);
+  }
+  .cart-count.has{transform:scale(1)}
+  @media (max-width:880px){
+    .cart-btn{margin-left:auto;margin-right:8px}
+  }
+
+  /* ---------- Cart drawer ---------- */
+  .cart-backdrop{
+    position:fixed;inset:0;background:rgba(26,20,16,.5);
+    opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:90;
+    backdrop-filter:blur(2px);
+  }
+  body.cart-open .cart-backdrop{opacity:1;pointer-events:auto}
+  .cart-drawer{
+    position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100%;
+    background:var(--crema-claro);z-index:100;
+    transform:translateX(100%);transition:transform .35s var(--ease);
+    display:flex;flex-direction:column;
+    box-shadow:-20px 0 60px -20px rgba(26,20,16,.3);
+  }
+  body.cart-open .cart-drawer{transform:translateX(0)}
+  .cart-head{
+    padding:22px 24px;border-bottom:1px solid var(--linea);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .cart-head h3{font-family:'Fraunces',serif;font-size:22px;color:var(--bordo);font-weight:700}
+  .cart-close{
+    background:none;border:0;cursor:pointer;width:36px;height:36px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:var(--bordo);
+    transition:background .2s;font-size:24px;line-height:1;
+  }
+  .cart-close:hover{background:rgba(107,42,31,.08)}
+  .cart-items{flex:1;overflow-y:auto;padding:16px 24px;display:flex;flex-direction:column;gap:14px}
+  .cart-empty{
+    text-align:center;padding:60px 20px;color:var(--gris);font-size:14px;
+  }
+  .cart-empty svg{width:48px;height:48px;color:var(--bordo);opacity:.3;margin:0 auto 14px;display:block}
+  .cart-item{
+    display:grid;grid-template-columns:72px 1fr;gap:14px;
+    background:#fff;border-radius:12px;padding:12px;
+    border:1px solid rgba(107,42,31,.06);
+  }
+  .cart-item-img{
+    width:72px;height:72px;border-radius:8px;background:var(--crema-papel);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .cart-item-img img{width:100%;height:100%;object-fit:contain;padding:6px}
+  .cart-item-info{display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+  .cart-item-name{font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--bordo);line-height:1.25}
+  .cart-item-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+  .cart-qty{display:inline-flex;align-items:center;gap:0;border:1px solid var(--linea);border-radius:999px;overflow:hidden}
+  .cart-qty button{background:transparent;border:0;width:26px;height:26px;cursor:pointer;color:var(--bordo);font-weight:700;font-size:14px;transition:background .15s}
+  .cart-qty button:hover{background:rgba(107,42,31,.08)}
+  .cart-qty span{min-width:24px;text-align:center;font-size:13px;font-weight:600;color:var(--bordo)}
+  .cart-item-price{font-family:'Fraunces',serif;font-weight:700;font-size:15px;color:var(--bordo)}
+  .cart-rem{
+    background:none;border:0;cursor:pointer;color:var(--gris);font-size:11px;text-decoration:underline;
+    padding:0;margin-top:4px;align-self:flex-start;
+  }
+  .cart-rem:hover{color:var(--bordo)}
+
+  .cart-foot{padding:20px 24px;border-top:1px solid var(--linea);background:#fff}
+  .cart-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+  .cart-total-row .lbl{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris)}
+  .cart-total-row .amt{font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--bordo)}
+  .cart-form{display:flex;flex-direction:column;gap:10px}
+  .cart-form input, .cart-form textarea{
+    width:100%;padding:11px 14px;border:1px solid var(--linea);border-radius:10px;
+    font-family:inherit;font-size:14px;background:var(--crema-claro);color:var(--tinta);
+    transition:border-color .2s;
+  }
+  .cart-form input:focus, .cart-form textarea:focus{outline:none;border-color:var(--bordo)}
+  .cart-form textarea{resize:vertical;min-height:50px;max-height:120px}
+  .checkout-btn{
+    background:#25D366;color:#fff;border:0;padding:14px 18px;border-radius:12px;
+    font-weight:700;font-size:15px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    transition:transform .2s var(--ease),background .2s;margin-top:6px;
+  }
+  .checkout-btn:hover{background:#1da851;transform:translateY(-1px)}
+  .checkout-btn:disabled{background:#aaa;cursor:not-allowed;transform:none}
+  .checkout-btn svg{width:18px;height:18px;fill:currentColor}
+
+  /* ---------- Preloader ---------- */
+  .preloader{
+    position:fixed;inset:0;background:var(--bordo);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;
+    z-index:9999;
+    transition:opacity .6s var(--ease), visibility .6s;
+  }
+  .preloader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+  .preloader-logo{
+    width:140px;height:140px;border-radius:50%;
+    object-fit:cover;border:2px solid rgba(212,165,92,.5);
+    animation:preloaderPulse 1.6s ease-in-out infinite;
+    box-shadow:0 0 0 0 rgba(212,165,92,.4);
+  }
+  @keyframes preloaderPulse{
+    0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(212,165,92,.45)}
+    50%{transform:scale(1.05);box-shadow:0 0 0 18px rgba(212,165,92,0)}
+  }
+  .preloader-text{
+    font-family:'Fraunces',serif;color:var(--crema-claro);
+    font-size:14px;letter-spacing:.34em;text-transform:uppercase;font-weight:500;
+    opacity:.85;
+  }
+  .preloader-bar{
+    width:140px;height:2px;background:rgba(241,231,210,.18);border-radius:2px;overflow:hidden;
+  }
+  .preloader-bar::after{
+    content:"";display:block;width:30%;height:100%;background:var(--dorado);
+    animation:barSlide 1.2s var(--ease) infinite;
+  }
+  @keyframes barSlide{
+    0%{transform:translateX(-100%)}
+    100%{transform:translateX(450%)}
+  }
+
+  /* ---------- Bloqueo de scroll mientras carga ---------- */
+  body.loading{overflow:hidden}
+
+  /* ---------- Intro animations ---------- */
+  .nav{transform:translateY(-100%);transition:transform .7s var(--ease) .15s, background .3s var(--ease), box-shadow .3s}
+  body.loaded .nav{transform:translateY(0)}
+
+  .intro-up{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease), transform .9s var(--ease)}
+  .intro-up.in{opacity:1;transform:none}
+
+  .intro-fade{opacity:0;transition:opacity 1s var(--ease)}
+  .intro-fade.in{opacity:1}
+
+  .intro-scale{opacity:0;transform:scale(.92) rotate(-3deg);transition:opacity 1s var(--ease), transform 1.1s var(--ease)}
+  .intro-scale.in{opacity:1;transform:rotate(-3deg)}
+
+  /* ---------- Toast ---------- */
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
+    background:var(--bordo);color:var(--crema-claro);padding:12px 22px;border-radius:999px;
+    font-size:14px;font-weight:600;z-index:200;opacity:0;transition:all .35s var(--ease);
+    box-shadow:0 20px 40px -15px rgba(0,0,0,.3);
+    display:flex;align-items:center;gap:10px;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast .check{
+    width:18px;height:18px;border-radius:50%;background:var(--dorado);color:var(--bordo-oscuro);
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;
+  }
+</style>
+</head>
+<body class="loading">
+
+<!-- ============== PRELOADER ============== -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <img src="assets/logo.jpg" alt="Mates Alpique" class="preloader-logo" id="preloaderLogo" onerror="this.style.display='none'">
+  <div class="preloader-bar"></div>
+  <div class="preloader-text">Mates Alpique</div>
+</div>
+
+<!-- ============== NAV ============== -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="brand">
+      <img src="assets/logo.jpg" alt="Mates Alpique logo">
+      <div>
+        <div class="brand-text">Mates Alpique</div>
+        <div class="brand-tag">Precio y calidad</div>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#productos">Mates</a>
+      <a href="#bombillas">Bombillas</a>
+      <a href="#historia">Historia</a>
+      <a href="#proceso">Proceso</a>
+    </div>
+    <button class="cart-btn" id="cartBtn" aria-label="Abrir carrito">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow intro-up" style="transition-delay:.4s">Mates artesanales · Seleccionados uno por uno</div>
+      <h1 class="display intro-up" style="transition-delay:.5s">El mate,<br/><em>al pique.</em></h1>
+      <p class="intro-up" style="transition-delay:.65s">Mates y bombillas elegidos uno por uno. Calidad de las de antes, precio que rinde. Para los que toman como se debe: recién cebado, sin vueltas.</p>
+      <div class="hero-ctas intro-up" style="transition-delay:.8s">
+        <a href="#productos" class="btn btn-primary">Ver mates <span class="arrow">→</span></a>
+        <a href="#bombillas" class="btn btn-ghost">Ver bombillas</a>
+      </div>
+      <div class="hero-stats intro-up" style="transition-delay:.95s">
+        <div class="stat"><div class="n">+500</div><div class="l">Mates entregados</div></div>
+        <div class="stat"><div class="n">100%</div><div class="l">Artesanal</div></div>
+        <div class="stat"><div class="n">9</div><div class="l">Modelos disponibles</div></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="floating-chip chip chip-1 intro-fade" style="transition-delay:1.1s"><span class="dot"></span> Virola de alpaca</div>
+      <div class="floating-chip chip chip-2 intro-fade" style="transition-delay:1.3s"><span class="dot"></span> Madera trabajada</div>
+      <div class="hero-photo intro-scale" id="heroPhoto" style="transition-delay:.6s">
+        <span class="tag">Línea premium</span>
+        <img src="assets/mate1.jpg" alt="Mate Imperial de Algarrobo">
+        <div class="price-box">
+          <div class="p">$27.000</div>
+          <div class="l">Imperial de Algarrobo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============== MARQUEE ============== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Precio y calidad</span><span>Cebado al pique</span><span>Cuero curtido a mano</span><span>Virolas de alpaca</span><span>Hecho en Argentina</span>
+    <span>Precio y calidad</span><span>Cebado al pique</span><span>Cuero curtido a mano</span><span>Virolas de alpaca</span><span>Hecho en Argentina</span>
+  </div>
+</div>
+
+<!-- ============== PRODUCTOS ============== -->
+<section id="productos" class="productos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Nuestros mates</div>
+      <h2>Cada modelo, una <em>historia</em>.</h2>
+      <p>Calabazas, maderas y cueros elegidos uno por uno. Virolas de alpaca trabajadas con detalles únicos. Diseñados para durar tantos litros como te dé el día.</p>
+    </div>
+
+    <div class="prod-grid">
+
+      <article class="prod reveal">
+        <div class="prod-img">
+          <span class="badge">Más vendido</span>
+          <img src="assets/mate1.jpg" alt="Mate Imperial de Algarrobo con virola cincelada">
+        </div>
+        <div class="prod-body">
+          <h3>Imperial de Algarrobo</h3>
+          <p class="desc">Algarrobo macizo con virola de alpaca cincelada y base con pie. Una pieza imperial.</p>
+          <div class="prod-foot"><span class="price-tag">$27.000</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+
+      <article class="prod reveal">
+        <div class="prod-img">
+          <span class="badge gold">Edición oro</span>
+          <img src="assets/mate2.jpg" alt="Mate Torpedo de Algarrobo con virola dorada trenzada">
+        </div>
+        <div class="prod-body">
+          <h3>Torpedo de Algarrobo</h3>
+          <p class="desc">Forma torpedo en algarrobo, con virola de bronce trenzado. Se hace notar.</p>
+          <div class="prod-foot"><span class="price-tag">$26.500</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+
+      <article class="prod reveal">
+        <div class="prod-img">
+          <img src="assets/mate3.jpg" alt="Mate Imperial de Calabaza con virola cincelada negro">
+        </div>
+        <div class="prod-body">
+          <h3>Imperial de Calabaza · Cincelado Negro</h3>
+          <p class="desc">Calabaza criolla con virola de alpaca cincelada en negro. Detalle floral.</p>
+          <div class="prod-foot"><span class="price-tag">$32.000</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+
+      <article class="prod reveal">
+        <div class="prod-img">
+          <span class="badge">Edición ltda.</span>
+          <img src="assets/mate5.jpg" alt="Mate Torpedo de Calabaza con virola cincelada">
+        </div>
+        <div class="prod-body">
+          <h3>Torpedo de Calabaza Cincelada</h3>
+          <p class="desc">Calabaza torpedo con base de cuero cosido a mano y virola cincelada criolla.</p>
+          <div class="prod-foot"><span class="price-tag">$33.000</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+
+      <article class="prod reveal sold-out">
+        <div class="prod-img">
+          <span class="badge sold-out-badge">Sin stock</span>
+          <img src="assets/mate6.jpg" alt="Mate Criollo de calabaza con base de cuero crudo">
+        </div>
+        <div class="prod-body">
+          <h3>Criollo Cuero Crudo</h3>
+          <p class="desc">Calabaza tradicional con base de cuero crudo trenzado. Vuelve pronto.</p>
+          <div class="prod-foot"><span class="price-tag">$20.000</span><button class="prod-btn sold-out-btn" type="button" disabled>Sin stock</button></div>
+        </div>
+      </article>
+
+      <article class="prod reveal">
+        <div class="prod-img">
+          <img src="assets/mate7.jpg" alt="Mate Imperial de Calabaza con virola cincelada roble">
+        </div>
+        <div class="prod-body">
+          <h3>Imperial de Calabaza · Cincelado Roble</h3>
+          <p class="desc">Calabaza con virola de alpaca cincelada con motivo roble. Línea imperial.</p>
+          <div class="prod-foot"><span class="price-tag">$32.000</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== BOMBILLAS ============== -->
+<section id="bombillas" class="bombillas">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Bombillas</div>
+      <h2>El detalle que <em>cambia el mate</em>.</h2>
+      <p>Bombillas de acero inoxidable y bronce. Buen filtrado, buena chupada, hechas para durar.</p>
+    </div>
+    <div class="bomb-grid">
+      <article class="bomb reveal">
+        <div class="bomb-img"><img src="assets/bombilla1.jpg" alt="Bombillón de acero inoxidable"></div>
+        <div class="bomb-body">
+          <h3>Bombillón de Acero Inox</h3>
+          <p class="desc">Acero inoxidable macizo con detalles tallados. Resistente y de excelente filtrado.</p>
+          <div class="bomb-foot"><span class="price-tag">$6.500</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+      <article class="bomb reveal">
+        <div class="bomb-img"><img src="assets/bombilla2.jpg" alt="Bombilla torneada de alpaca con anillos de bronce"></div>
+        <div class="bomb-body">
+          <h3>Torneada de Alpaca · Anillos de Bronce</h3>
+          <p class="desc">Caña torneada en alpaca con detalles y anillos de bronce trabajados a mano.</p>
+          <div class="bomb-foot"><span class="price-tag">$18.500</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+      <article class="bomb reveal">
+        <div class="bomb-img"><img src="assets/bombilla3.jpg" alt="Bombilla torneada de alpaca y bronce"></div>
+        <div class="bomb-body">
+          <h3>Torneada de Alpaca y Bronce</h3>
+          <p class="desc">Alpaca torneada con boquilla de bronce. Diseño clásico con terminación premium.</p>
+          <div class="bomb-foot"><span class="price-tag">$16.000</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HISTORIA ============== -->
+<section id="historia" class="historia">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Nuestra historia</div>
+      <h2>Nacimos para tomar el mate <em>como se debe</em>.</h2>
+    </div>
+    <div class="historia-grid">
+      <div class="reveal">
+        <h3>No es un mate.<br/>Es un <em>compañero</em>.</h3>
+        <p class="lead">Mates Alpique arrancó con una idea simple: ofrecer mates con la calidad de los buenos a un precio que no te haga pensarlo dos veces. Recorremos artesanos de todo el país y elegimos uno por uno los mates que ofrecemos.</p>
+        <p class="lead" style="margin-top:16px">Creemos en lo hecho a mano, en lo que dura, en lo que mejora con el uso. En sentarse en la vereda, cebar bien, y no apurarse.</p>
+        <div class="pills">
+          <span class="pill">Hecho en Argentina</span>
+          <span class="pill">Selección artesanal</span>
+          <span class="pill">Virolas de alpaca</span>
+          <span class="pill">Terminación premium</span>
+        </div>
+      </div>
+      <div class="historia-art reveal">
+        <div class="historia-photo">
+          <img src="assets/mate5.jpg" alt="Mate Torpedo de Calabaza Cincelada">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PROCESO ============== -->
+<section id="proceso" class="proceso">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Cómo trabajamos</div>
+      <h2>Del artesano, <em>al pique</em>.</h2>
+      <p>Cuatro pasos, oficio y paciencia. Así llega cada mate a tus manos.</p>
+    </div>
+    <div class="pasos">
+      <div class="paso reveal">
+        <div class="paso-num">01</div>
+        <h4>Búsqueda</h4>
+        <p>Recorremos a los mejores artesanos del país buscando mates con alma. No cualquiera entra al catálogo.</p>
+      </div>
+      <div class="paso reveal">
+        <div class="paso-num">02</div>
+        <h4>Curaduría</h4>
+        <p>Revisamos cada pieza uno por uno. Materiales nobles, terminaciones impecables, virolas bien montadas.</p>
+      </div>
+      <div class="paso reveal">
+        <div class="paso-num">03</div>
+        <h4>Empaque</h4>
+        <p>Embalamos cada pedido con cuidado para que llegue como salió del taller del artesano.</p>
+      </div>
+      <div class="paso reveal">
+        <div class="paso-num">04</div>
+        <h4>Entrega</h4>
+        <p>Lo envolvemos como se merece y te llega listo para que lo cures a tu gusto. Te explicamos cómo hacerlo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TESTI ============== -->
+<section id="testi" class="testi">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Lo que dicen</div>
+      <h2>Cebados <em>felices</em>.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p>Me llegó hermoso, mejor que en las fotos. La terminación de la virola es impecable y la madera tiene un trabajo único. Recomiendo 100%.</p>
+        <div class="testi-author">
+          <div class="avatar">M</div>
+          <div><div class="testi-name">Martín G.</div><div class="testi-meta">Buenos Aires</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p>Lo pedí como regalo para mi viejo y se emocionó. El detalle de la virola y la terminación son únicos. Volvemos a comprar.</p>
+        <div class="testi-author">
+          <div class="avatar">F</div>
+          <div><div class="testi-name">Florencia P.</div><div class="testi-meta">Buenos Aires</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p>Lo uso todos los días desde hace meses y sigue como nuevo. La atención de los chicos fue 10 puntos.</p>
+        <div class="testi-author">
+          <div class="avatar">J</div>
+          <div><div class="testi-name">Juan R.</div><div class="testi-meta">Buenos Aires</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== REVIEW FORM ============== -->
+<section id="dejar-opinion" class="review-form">
+  <div class="wrap">
+    <div class="rf-card reveal">
+      <div class="rf-head">
+        <div class="eyebrow">Tu turno</div>
+        <h3>¿Te llegó un <em>Mates Alpique</em>? Contanos.</h3>
+        <p>Dejá tu opinión y la sumamos a los testimonios del sitio. Llega directo por WhatsApp.</p>
+      </div>
+      <form class="rf-form" id="reviewForm">
+        <div class="rf-row">
+          <input type="text" id="rvName" placeholder="Tu nombre" required>
+          <input type="text" id="rvCity" placeholder="Ciudad (opcional)">
+        </div>
+        <div class="rf-rating">
+          <span class="rf-label">Tu puntaje:</span>
+          <div class="rf-stars" id="rvStars" role="radiogroup" aria-label="Calificación">
+            <button type="button" data-star="1" aria-label="1 estrella">★</button>
+            <button type="button" data-star="2" aria-label="2 estrellas">★</button>
+            <button type="button" data-star="3" aria-label="3 estrellas">★</button>
+            <button type="button" data-star="4" aria-label="4 estrellas">★</button>
+            <button type="button" data-star="5" aria-label="5 estrellas">★</button>
+          </div>
+        </div>
+        <textarea id="rvText" placeholder="Contanos tu experiencia..." required rows="4"></textarea>
+        <button type="submit" class="rf-submit">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9 1-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+          Enviar opinión por WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA ============== -->
+<section id="contacto" class="cta">
+  <div class="wrap">
+    <div class="reveal">
+      <h2>Llevate el tuyo,<br/><em>al pique</em>.</h2>
+      <p>Escribinos por Instagram o WhatsApp. Te asesoramos y armamos el mate que mejor te queda.</p>
+      <div class="hero-ctas" style="justify-content:center">
+        <a href="https://wa.me/5491146733333?text=Hola!%20Quiero%20info%20de%20los%20mates" target="_blank" rel="noopener" class="btn btn-primary">WhatsApp <span class="arrow">→</span></a>
+        <a href="https://instagram.com/alpique.mates" target="_blank" rel="noopener" class="btn btn-primary">Instagram <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo.jpg" alt="Mates Alpique">
+        <div class="name">Mates Alpique</div>
+        <p>Mates y bombillas artesanales seleccionados en Argentina. Precio y calidad.</p>
+      </div>
+      <div>
+        <div class="foot-title">Explorar</div>
+        <ul class="foot-list">
+          <li><a href="#productos">Mates</a></li>
+          <li><a href="#bombillas">Bombillas</a></li>
+          <li><a href="#historia">Historia</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-title">Ayuda</div>
+        <ul class="foot-list">
+          <li><a href="#">Cuidado del mate</a></li>
+          <li><a href="#">Envíos</a></li>
+          <li><a href="#">Cambios</a></li>
+          <li><a href="#">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-title">Contacto</div>
+        <ul class="foot-list">
+          <li><a href="https://instagram.com/alpique.mates">@alpique.mates</a></li>
+          <li><a href="mailto:hola@matesalpique.com">hola@matesalpique.com</a></li>
+          <li><a href="https://wa.me/5491146733333">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Mates Alpique — Precio y calidad.</div>
+      <div class="socials">
+        <a href="https://instagram.com/alpique.mates" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zm-5 3c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zm5.5-1a1 1 0 100 2 1 1 0 000-2zM12 9c1.654 0 3 1.346 3 3s-1.346 3-3 3-3-1.346-3-3 1.346-3 3-3z"/></svg>
+        </a>
+        <a href="https://wa.me/5491146733333" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9 1-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="credit">
+      <div>Sitio web por <a href="https://wa.me/5491138655775" target="_blank" rel="noopener">mesa.digital</a></div>
+      <div>Contacto: <a href="https://wa.me/5491138655775" target="_blank" rel="noopener">+54 9 11 3865-5775</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== CART DRAWER ============== -->
+<div class="cart-backdrop" id="cartBackdrop"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Carrito">
+  <div class="cart-head">
+    <h3>Tu pedido</h3>
+    <button class="cart-close" id="cartClose" aria-label="Cerrar">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total-row"><span class="lbl">Total</span><span class="amt" id="cartTotal">$0</span></div>
+    <form class="cart-form" id="cartForm">
+      <input type="text" id="custName" placeholder="Tu nombre (opcional)" autocomplete="name">
+      <input type="text" id="custLoc" placeholder="Ciudad / Provincia (opcional)" autocomplete="address-level2">
+      <textarea id="custNote" placeholder="Comentarios o aclaraciones (opcional)"></textarea>
+      <button type="submit" class="checkout-btn" id="checkoutBtn">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9 1-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+        Finalizar por WhatsApp
+      </button>
+    </form>
+  </div>
+</aside>
+
+<!-- ============== TOAST ============== -->
+<div class="toast" id="toast"><span class="check">✓</span><span id="toastMsg">Agregado al carrito</span></div>
+
+<script>
+  /* ============== CONFIG ============== */
+  // ⚠️ Cambiá este número por el WhatsApp real del negocio (formato internacional sin + ni espacios)
+  const WA_NUMBER = '5491146733333';
+
+  /* ============== INTRO ============== */
+  let introLaunched = false;
+  function launchIntro(){
+    if(introLaunched) return;
+    introLaunched = true;
+    const pre = document.getElementById('preloader');
+    if(pre) pre.classList.add('hidden');
+    document.body.classList.remove('loading');
+    document.body.classList.add('loaded');
+    document.querySelectorAll('.intro-up, .intro-fade, .intro-scale').forEach(el => el.classList.add('in'));
+    setTimeout(()=>{
+      const hp = document.getElementById('heroPhoto');
+      if(hp) hp.classList.add('float');
+    }, 1700);
+  }
+
+  // Dismiss strategy resistente a mobile:
+  // 1) Apenas el DOM esté listo, esperamos un mínimo corto y largamos
+  // 2) Si el usuario toca/scrollea, largamos inmediatamente
+  // 3) Hard cutoff a los 1800ms pase lo que pase
+  const PRELOADER_MIN = 650;
+  const introStart = performance.now();
+  function tryLaunch(){
+    const elapsed = performance.now() - introStart;
+    const wait = Math.max(0, PRELOADER_MIN - elapsed);
+    setTimeout(launchIntro, wait);
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tryLaunch, {once:true});
+  } else {
+    tryLaunch();
+  }
+  // Hard cutoff
+  setTimeout(launchIntro, 1800);
+  // Tap o scroll = largar
+  ['touchstart','click','scroll','keydown'].forEach(ev =>
+    window.addEventListener(ev, launchIntro, {once:true, passive:true})
+  );
+
+  /* ============== Menú móvil ============== */
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', ()=> navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=> navLinks.classList.remove('open')));
+
+  /* ============== Reveal en scroll ============== */
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting)
