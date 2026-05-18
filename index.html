@@ -995,53 +995,271 @@
 <script>
   /* ============== CONFIG ============== */
   // ⚠️ Cambiá este número por el WhatsApp real del negocio (formato internacional sin + ni espacios)
-  const WA_NUMBER = '5491146733333';
+  var WA_NUMBER = '5491146733333';
 
-  /* ============== INTRO ============== */
-  let introLaunched = false;
+  /* ============== INTRO (bulletproof) ==============
+     Esto va PRIMERO y es lo más simple posible.
+     Aunque después algo falle, el preloader se va siempre. */
+  var introLaunched = false;
   function launchIntro(){
     if(introLaunched) return;
     introLaunched = true;
-    const pre = document.getElementById('preloader');
-    if(pre) pre.classList.add('hidden');
-    document.body.classList.remove('loading');
-    document.body.classList.add('loaded');
-    document.querySelectorAll('.intro-up, .intro-fade, .intro-scale').forEach(el => el.classList.add('in'));
-    setTimeout(()=>{
-      const hp = document.getElementById('heroPhoto');
-      if(hp) hp.classList.add('float');
-    }, 1700);
+    try {
+      var pre = document.getElementById('preloader');
+      if(pre){ pre.style.opacity = '0'; pre.style.pointerEvents = 'none'; setTimeout(function(){ pre.style.display = 'none'; }, 600); }
+      document.body.classList.remove('loading');
+      document.body.classList.add('loaded');
+      var els = document.querySelectorAll('.intro-up, .intro-fade, .intro-scale');
+      for(var i = 0; i < els.length; i++){ els[i].classList.add('in'); }
+      setTimeout(function(){
+        var hp = document.getElementById('heroPhoto');
+        if(hp) hp.classList.add('float');
+      }, 1500);
+    } catch(err) {
+      // Si algo falla, al menos mostramos la página
+      try { document.body.classList.remove('loading'); } catch(e){}
+      try { var p = document.getElementById('preloader'); if(p) p.style.display = 'none'; } catch(e){}
+    }
   }
-
-  // Dismiss strategy resistente a mobile:
-  // 1) Apenas el DOM esté listo, esperamos un mínimo corto y largamos
-  // 2) Si el usuario toca/scrollea, largamos inmediatamente
-  // 3) Hard cutoff a los 1800ms pase lo que pase
-  const PRELOADER_MIN = 650;
-  const introStart = performance.now();
-  function tryLaunch(){
-    const elapsed = performance.now() - introStart;
-    const wait = Math.max(0, PRELOADER_MIN - elapsed);
-    setTimeout(launchIntro, wait);
-  }
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', tryLaunch, {once:true});
-  } else {
-    tryLaunch();
-  }
-  // Hard cutoff
-  setTimeout(launchIntro, 1800);
-  // Tap o scroll = largar
-  ['touchstart','click','scroll','keydown'].forEach(ev =>
-    window.addEventListener(ev, launchIntro, {once:true, passive:true})
-  );
+  // Múltiples disparadores para garantizar que se cierre:
+  setTimeout(launchIntro, 700);                                          // 1) tiempo fijo
+  setTimeout(launchIntro, 2500);                                         // 2) backup por las dudas
+  if(document.readyState !== 'loading'){ launchIntro(); }                // 3) si ya está listo
+  document.addEventListener('DOMContentLoaded', launchIntro);            // 4) cuando DOM esté listo
+  window.addEventListener('load', launchIntro);                          // 5) cuando todo cargó
+  document.addEventListener('touchstart', launchIntro, {passive:true});  // 6) si tocan
+  document.addEventListener('click', launchIntro);                        // 7) si clickean
 
   /* ============== Menú móvil ============== */
-  const burger = document.getElementById('burger');
-  const navLinks = document.getElementById('navLinks');
-  burger.addEventListener('click', ()=> navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=> navLinks.classList.remove('open')));
+  try {
+    var burger = document.getElementById('burger');
+    var navLinks = document.getElementById('navLinks');
+    if(burger && navLinks){
+      burger.addEventListener('click', function(){ navLinks.classList.toggle('open'); });
+      var lks = navLinks.querySelectorAll('a');
+      for(var i = 0; i < lks.length; i++){
+        lks[i].addEventListener('click', function(){ navLinks.classList.remove('open'); });
+      }
+    }
+  } catch(e){}
 
   /* ============== Reveal en scroll ============== */
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting)
+  try {
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+      },{threshold:.12});
+      document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+    } else {
+      // Fallback: si no hay IO, mostramos todo de una
+      document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+    }
+  } catch(e){
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ============== Nav scroll ============== */
+  try {
+    var nav = document.querySelector('.nav');
+    if(nav){
+      window.addEventListener('scroll', function(){
+        if(window.scrollY > 30){ nav.style.background = 'rgba(250,245,232,.96)'; nav.style.boxShadow = '0 4px 20px -10px rgba(107,42,31,.12)';}
+        else{ nav.style.background = 'rgba(250,245,232,.85)'; nav.style.boxShadow = 'none'; }
+      });
+    }
+  } catch(e){}
+
+  /* ============== CARRITO ============== */
+  try {
+  var CART_KEY = 'alpique_cart_v1';
+  var cart = [];
+  try { cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch(e){ cart = []; }
+
+  var $ = function(id){ return document.getElementById(id); };
+  const fmt = n => '$' + n.toLocaleString('es-AR');
+
+  function saveCart(){
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    renderCart();
+  }
+
+  function readProduct(card){
+    const name = card.querySelector('h3').textContent.trim();
+    const priceText = card.querySelector('.price-tag').textContent.trim();
+    const price = parseInt(priceText.replace(/[^\d]/g,''), 10) || 0;
+    const imgEl = card.querySelector('img');
+    const img = imgEl.getAttribute('src');
+    const id = img.split('/').pop().replace(/\.[^.]+$/, '');
+    return { id, name, price, img };
+  }
+
+  function addToCart(product){
+    const exist = cart.find(i => i.id === product.id);
+    if(exist) exist.qty++;
+    else cart.push({ ...product, qty: 1 });
+    saveCart();
+    showToast(`${product.name} agregado`);
+    openCart();
+  }
+
+  function changeQty(id, delta){
+    const item = cart.find(i => i.id === id);
+    if(!item) return;
+    item.qty += delta;
+    if(item.qty < 1) cart = cart.filter(i => i.id !== id);
+    saveCart();
+  }
+
+  function removeItem(id){
+    cart = cart.filter(i => i.id !== id);
+    saveCart();
+  }
+
+  function renderCart(){
+    const count = cart.reduce((s,i) => s + i.qty, 0);
+    const countEl = $('cartCount');
+    countEl.textContent = count;
+    countEl.classList.toggle('has', count > 0);
+
+    const items = $('cartItems');
+    if(cart.length === 0){
+      items.innerHTML = `
+        <div class="cart-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          Tu carrito está vacío.<br/>Sumá algún mate o bombilla.
+        </div>`;
+    } else {
+      items.innerHTML = cart.map(i => `
+        <div class="cart-item">
+          <div class="cart-item-img"><img src="${i.img}" alt="${i.name}"></div>
+          <div class="cart-item-info">
+            <div>
+              <div class="cart-item-name">${i.name}</div>
+              <button class="cart-rem" data-act="rem" data-id="${i.id}">Quitar</button>
+            </div>
+            <div class="cart-item-row">
+              <div class="cart-qty">
+                <button data-act="dec" data-id="${i.id}" aria-label="Restar">−</button>
+                <span>${i.qty}</span>
+                <button data-act="inc" data-id="${i.id}" aria-label="Sumar">+</button>
+              </div>
+              <span class="cart-item-price">${fmt(i.price * i.qty)}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+    $('cartTotal').textContent = fmt(total);
+    $('checkoutBtn').disabled = cart.length === 0;
+  }
+
+  function openCart(){ document.body.classList.add('cart-open'); }
+  function closeCart(){ document.body.classList.remove('cart-open'); }
+
+  /* ============== Listeners ============== */
+  document.querySelectorAll('.add-btn').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var card = btn.closest('.prod, .bomb');
+      if(!card) return;
+      addToCart(readProduct(card));
+    });
+  });
+
+  if($('cartBtn')) $('cartBtn').addEventListener('click', openCart);
+  if($('cartClose')) $('cartClose').addEventListener('click', closeCart);
+  if($('cartBackdrop')) $('cartBackdrop').addEventListener('click', closeCart);
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeCart(); });
+
+  if($('cartItems')) $('cartItems').addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-act]');
+    if(!btn) return;
+    var id = btn.dataset.id;
+    var act = btn.dataset.act;
+    if(act === 'inc') changeQty(id, 1);
+    else if(act === 'dec') changeQty(id, -1);
+    else if(act === 'rem') removeItem(id);
+  });
+
+  /* ============== Checkout WhatsApp ============== */
+  if($('cartForm')) $('cartForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    if(cart.length === 0) return;
+    var name = $('custName').value.trim();
+    var loc = $('custLoc').value.trim();
+    var note = $('custNote').value.trim();
+    var lines = cart.map(function(i){ return '• ' + i.qty + 'x ' + i.name + ' — ' + fmt(i.price * i.qty); }).join('\n');
+    var total = cart.reduce(function(s,i){ return s + i.price * i.qty; }, 0);
+    var msg = '*Hola Mates Alpique!* Quiero hacer este pedido:\n\n' + lines + '\n\n*Total: ' + fmt(total) + '*';
+    if(name) msg += '\n\n*Nombre:* ' + name;
+    if(loc)  msg += '\n*Ubicación:* ' + loc;
+    if(note) msg += '\n*Comentarios:* ' + note;
+    msg += '\n\n_Pedido generado desde matesalpique.com_';
+    var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+    window.open(url, '_blank');
+  });
+  } catch(cartErr) { /* Si falla el carrito entero, el sitio igual abre */ }
+
+  /* ============== Review form ============== */
+  try {
+    var rvRating = 0;
+    var rvStars = document.getElementById('rvStars');
+    if(rvStars){
+      var rvBtns = rvStars.querySelectorAll('button');
+      for(var k = 0; k < rvBtns.length; k++){
+        (function(btn){
+          btn.addEventListener('click', function(){
+            rvRating = parseInt(btn.dataset.star, 10);
+            var allBtns = rvStars.querySelectorAll('button');
+            for(var j = 0; j < allBtns.length; j++){
+              allBtns[j].classList.toggle('filled', j < rvRating);
+            }
+          });
+        })(rvBtns[k]);
+      }
+    }
+    var rvForm = document.getElementById('reviewForm');
+    if(rvForm){
+      rvForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        var name = document.getElementById('rvName').value.trim();
+        var city = document.getElementById('rvCity').value.trim();
+        var text = document.getElementById('rvText').value.trim();
+        if(!name || !text) return;
+        var stars = '';
+        if(rvRating > 0){
+          for(var s = 0; s < 5; s++){ stars += (s < rvRating ? '★' : '☆'); }
+        }
+        var msg = '*Hola Mates Alpique!* Quiero dejar mi opinión:\n\n';
+        if(stars) msg += stars + '\n\n';
+        msg += '*Nombre:* ' + name + '\n';
+        if(city) msg += '*Ciudad:* ' + city + '\n';
+        msg += '*Comentario:* ' + text;
+        var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+        window.open(url, '_blank');
+        try { showToast('¡Gracias! Llevamos tu opinión a WhatsApp'); } catch(e){}
+      });
+    }
+  } catch(e){}
+
+  /* ============== Toast ============== */
+  var toastT;
+  function showToast(text){
+    try {
+      var t = document.getElementById('toast');
+      var m = document.getElementById('toastMsg');
+      if(!t || !m) return;
+      m.textContent = text;
+      t.classList.add('show');
+      clearTimeout(toastT);
+      toastT = setTimeout(function(){ t.classList.remove('show'); }, 2200);
+    } catch(e){}
+  }
+
+  try { if(typeof renderCart === 'function') renderCart(); } catch(e){}
+</script>
+
+</body>
+</html>
