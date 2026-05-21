@@ -219,11 +219,15 @@
   .prod-btn:hover{background:var(--cuero)}
 
   /* ---------- Sold out (sin stock) ---------- */
-  .prod.sold-out .prod-img img{opacity:.55;filter:grayscale(.45)}
-  .prod.sold-out:hover .prod-img img{transform:none}
-  .prod.sold-out .price-tag{color:var(--gris);text-decoration:line-through}
+  .prod.sold-out .prod-img img,
+  .bomb.sold-out .bomb-img img{opacity:.55;filter:grayscale(.45)}
+  .prod.sold-out:hover .prod-img img,
+  .bomb.sold-out:hover .bomb-img img{transform:none}
+  .prod.sold-out .price-tag,
+  .bomb.sold-out .price-tag{color:var(--gris);text-decoration:line-through}
   .badge.sold-out-badge{background:#5a5347;color:var(--crema-claro)}
   .sold-out-btn{background:#bdb6a9!important;color:#fff!important;cursor:not-allowed!important;pointer-events:none}
+  .bomb-img{position:relative}
 
   /* ---------- Review form ---------- */
   .review-form{background:linear-gradient(180deg,var(--crema-claro) 0%, var(--crema-papel) 100%)}
@@ -746,12 +750,12 @@
           <div class="bomb-foot"><span class="price-tag">$6.500</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
         </div>
       </article>
-      <article class="bomb reveal">
-        <div class="bomb-img"><img src="assets/bombilla2.jpg" alt="Bombilla torneada de alpaca con anillos de bronce"></div>
+      <article class="bomb reveal sold-out">
+        <div class="bomb-img"><span class="badge sold-out-badge">Sin stock</span><img src="assets/bombilla2.jpg" alt="Bombilla torneada de alpaca con anillos de bronce"></div>
         <div class="bomb-body">
           <h3>Torneada de Alpaca · Anillos de Bronce</h3>
-          <p class="desc">Caña torneada en alpaca con detalles y anillos de bronce trabajados a mano.</p>
-          <div class="bomb-foot"><span class="price-tag">$18.500</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+          <p class="desc">Caña torneada en alpaca con detalles y anillos de bronce trabajados a mano. Vuelve pronto.</p>
+          <div class="bomb-foot"><span class="price-tag">$18.500</span><button class="prod-btn sold-out-btn" type="button" disabled>Sin stock</button></div>
         </div>
       </article>
       <article class="bomb reveal">
