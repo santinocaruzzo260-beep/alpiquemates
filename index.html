@@ -121,6 +121,8 @@
   }
   .hero-photo:hover{transform:rotate(0) scale(1.02)}
   .hero-photo img{width:100%;height:100%;object-fit:contain;padding:30px;background:#fff}
+  .hero-promo{background:#000!important;cursor:pointer;text-decoration:none;display:block}
+  .hero-promo img{padding:0!important;object-fit:cover!important;background:#000!important}
   .hero-photo .tag{
     position:absolute;top:22px;left:22px;
     background:var(--bordo);color:var(--crema-claro);
@@ -217,6 +219,24 @@
     transition:background .2s;
   }
   .prod-btn:hover{background:var(--cuero)}
+
+  /* ---------- Discount badge + price-old ---------- */
+  .badge.discount{
+    background:linear-gradient(135deg,var(--dorado),#b8852a);
+    color:var(--bordo-oscuro);font-weight:800;font-size:11px;
+    left:auto;right:14px;
+    box-shadow:0 4px 12px -4px rgba(212,165,92,.6);
+    animation:pulse-discount 2s ease-in-out infinite;
+  }
+  @keyframes pulse-discount{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.06)}
+  }
+  .price-wrap{display:flex;flex-direction:column;gap:2px;line-height:1.1}
+  .price-old{
+    font-family:'Fraunces',serif;font-size:14px;font-weight:500;
+    color:var(--gris);text-decoration:line-through;
+  }
 
   /* ---------- Sold out (sin stock) ---------- */
   .prod.sold-out .prod-img img,
@@ -625,16 +645,9 @@
       </div>
     </div>
     <div class="hero-art">
-      <div class="floating-chip chip chip-1 intro-fade" style="transition-delay:1.1s"><span class="dot"></span> Virola de alpaca</div>
-      <div class="floating-chip chip chip-2 intro-fade" style="transition-delay:1.3s"><span class="dot"></span> Madera trabajada</div>
-      <div class="hero-photo intro-scale" id="heroPhoto" style="transition-delay:.6s">
-        <span class="tag">Línea premium</span>
-        <img src="assets/mate1.jpg" alt="Mate Imperial de Algarrobo">
-        <div class="price-box">
-          <div class="p">$27.000</div>
-          <div class="l">Imperial de Algarrobo</div>
-        </div>
-      </div>
+      <a href="#productos" class="hero-photo hero-promo intro-scale" id="heroPhoto" style="transition-delay:.6s">
+        <img src="assets/promo-torpedo.jpg" alt="Mate Torpedo Cincelado · 20% OFF">
+      </a>
     </div>
   </div>
 </header>
@@ -660,7 +673,6 @@
 
       <article class="prod reveal">
         <div class="prod-img">
-          <span class="badge">Más vendido</span>
           <img src="assets/mate1.jpg" alt="Mate Imperial de Algarrobo con virola cincelada">
         </div>
         <div class="prod-body">
@@ -696,13 +708,20 @@
 
       <article class="prod reveal">
         <div class="prod-img">
-          <span class="badge">Edición ltda.</span>
+          <span class="badge">Más vendido</span>
+          <span class="badge discount">20% OFF</span>
           <img src="assets/mate5.jpg" alt="Mate Torpedo de Calabaza con virola cincelada">
         </div>
         <div class="prod-body">
           <h3>Torpedo de Calabaza Cincelada</h3>
           <p class="desc">Calabaza torpedo con base de cuero cosido a mano y virola cincelada criolla.</p>
-          <div class="prod-foot"><span class="price-tag">$33.000</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+          <div class="prod-foot">
+            <div class="price-wrap">
+              <span class="price-old">$36.800</span>
+              <span class="price-tag">$29.500</span>
+            </div>
+            <button class="prod-btn add-btn" type="button">Agregar +</button>
+          </div>
         </div>
       </article>
 
@@ -742,12 +761,12 @@
       <p>Bombillas de acero inoxidable y bronce. Buen filtrado, buena chupada, hechas para durar.</p>
     </div>
     <div class="bomb-grid">
-      <article class="bomb reveal">
-        <div class="bomb-img"><img src="assets/bombilla1.jpg" alt="Bombillón de acero inoxidable"></div>
+      <article class="bomb reveal sold-out">
+        <div class="bomb-img"><span class="badge sold-out-badge">Sin stock</span><img src="assets/bombilla1.jpg" alt="Bombillón de acero inoxidable"></div>
         <div class="bomb-body">
           <h3>Bombillón de Acero Inox</h3>
-          <p class="desc">Acero inoxidable macizo con detalles tallados. Resistente y de excelente filtrado.</p>
-          <div class="bomb-foot"><span class="price-tag">$6.500</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+          <p class="desc">Acero inoxidable macizo con detalles tallados. Resistente y de excelente filtrado. Vuelve pronto.</p>
+          <div class="bomb-foot"><span class="price-tag">$6.500</span><button class="prod-btn sold-out-btn" type="button" disabled>Sin stock</button></div>
         </div>
       </article>
       <article class="bomb reveal sold-out">
@@ -1265,4 +1284,4 @@
 </script>
 
 </body>
-</html>
+</htm
