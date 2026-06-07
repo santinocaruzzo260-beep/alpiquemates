@@ -682,15 +682,15 @@
         </div>
       </article>
 
-      <article class="prod reveal">
+      <article class="prod reveal sold-out">
         <div class="prod-img">
-          <span class="badge gold">Edición oro</span>
+          <span class="badge sold-out-badge">Sin stock</span>
           <img src="assets/mate2.jpg" alt="Mate Torpedo de Algarrobo con virola dorada trenzada">
         </div>
         <div class="prod-body">
           <h3>Torpedo de Algarrobo</h3>
-          <p class="desc">Forma torpedo en algarrobo, con virola de bronce trenzado. Se hace notar.</p>
-          <div class="prod-foot"><span class="price-tag">$26.500</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+          <p class="desc">Forma torpedo en algarrobo, con virola de bronce trenzado. Vuelve pronto.</p>
+          <div class="prod-foot"><span class="price-tag">$26.500</span><button class="prod-btn sold-out-btn" type="button" disabled>Sin stock</button></div>
         </div>
       </article>
 
@@ -1284,4 +1284,29 @@
 </script>
 
 </body>
-</htm
+</html>
+.open(url, '_blank');
+        try { showToast('¡Gracias! Llevamos tu opinión a WhatsApp'); } catch(e){}
+      });
+    }
+  } catch(e){}
+
+  /* ============== Toast ============== */
+  var toastT;
+  function showToast(text){
+    try {
+      var t = document.getElementById('toast');
+      var m = document.getElementById('toastMsg');
+      if(!t || !m) return;
+      m.textContent = text;
+      t.classList.add('show');
+      clearTimeout(toastT);
+      toastT = setTimeout(function(){ t.classList.remove('show'); }, 2200);
+    } catch(e){}
+  }
+
+  try { if(typeof renderCart === 'function') renderCart(); } catch(e){}
+</script>
+
+</body>
+</html>
