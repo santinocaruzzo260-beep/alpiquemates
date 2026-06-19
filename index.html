@@ -752,14 +752,15 @@
         </div>
       </article>
 
-      <article class="prod reveal">
+      <article class="prod reveal sold-out">
         <div class="prod-img">
+          <span class="badge sold-out-badge">Sin stock</span>
           <img src="assets/mate7.jpg" alt="Mate Imperial de Calabaza con virola cincelada roble">
         </div>
         <div class="prod-body">
           <h3>Imperial de Calabaza · Cincelado Roble</h3>
-          <p class="desc">Calabaza con virola de alpaca cincelada con motivo roble. Línea imperial.</p>
-          <div class="prod-foot"><span class="price-tag">$32.000</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+          <p class="desc">Calabaza con virola de alpaca cincelada con motivo roble. Vuelve pronto.</p>
+          <div class="prod-foot"><span class="price-tag">$32.000</span><button class="prod-btn sold-out-btn" type="button" disabled>Sin stock</button></div>
         </div>
       </article>
 
@@ -1320,8 +1321,4 @@
     } catch(e){}
   }
 
-  try { if(typeof renderCart === 'function') renderCart(); } catch(e){}
-</script>
-
-</body>
-</html>
+  try { if(typeo
