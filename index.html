@@ -645,9 +645,16 @@
       </div>
     </div>
     <div class="hero-art">
-      <a href="#productos" class="hero-photo hero-promo intro-scale" id="heroPhoto" style="transition-delay:.6s">
-        <img src="assets/promo-torpedo.jpg" alt="Mate Torpedo Cincelado · 20% OFF">
-      </a>
+      <div class="floating-chip chip chip-1 intro-fade" style="transition-delay:1.1s"><span class="dot"></span> Virola de alpaca</div>
+      <div class="floating-chip chip chip-2 intro-fade" style="transition-delay:1.3s"><span class="dot"></span> Madera trabajada</div>
+      <div class="hero-photo intro-scale" id="heroPhoto" style="transition-delay:.6s">
+        <span class="tag">Línea premium</span>
+        <img src="assets/mate1.jpg" alt="Mate Imperial de Algarrobo">
+        <div class="price-box">
+          <div class="p">$27.000</div>
+          <div class="l">Imperial de Algarrobo</div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
@@ -1307,18 +1314,4 @@
     }
   } catch(e){}
 
-  /* ============== Toast ============== */
-  var toastT;
-  function showToast(text){
-    try {
-      var t = document.getElementById('toast');
-      var m = document.getElementById('toastMsg');
-      if(!t || !m) return;
-      m.textContent = text;
-      t.classList.add('show');
-      clearTimeout(toastT);
-      toastT = setTimeout(function(){ t.classList.remove('show'); }, 2200);
-    } catch(e){}
-  }
-
-  try { if(typeo
+  /* =
