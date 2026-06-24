@@ -220,6 +220,15 @@
   }
   .prod-btn:hover{background:var(--cuero)}
 
+  /* ---------- Gift badge (bombilla de regalo) ---------- */
+  .badge.gift{
+    background:linear-gradient(135deg,#3a7d44,#2b5e34);
+    color:#fff;font-weight:700;font-size:11px;
+    display:inline-flex;align-items:center;gap:6px;
+    box-shadow:0 4px 12px -4px rgba(58,125,68,.6);
+  }
+  .badge.gift::before{content:"🎁";font-size:13px}
+
   /* ---------- Discount badge + price-old ---------- */
   .badge.discount{
     background:linear-gradient(135deg,var(--dorado),#b8852a);
@@ -704,18 +713,6 @@
       <article class="prod reveal sold-out">
         <div class="prod-img">
           <span class="badge sold-out-badge">Sin stock</span>
-          <img src="assets/mate3.jpg" alt="Mate Imperial de Calabaza con virola cincelada negro">
-        </div>
-        <div class="prod-body">
-          <h3>Imperial de Calabaza · Cincelado Negro</h3>
-          <p class="desc">Calabaza criolla con virola de alpaca cincelada en negro. Vuelve pronto.</p>
-          <div class="prod-foot"><span class="price-tag">$32.000</span><button class="prod-btn sold-out-btn" type="button" disabled>Sin stock</button></div>
-        </div>
-      </article>
-
-      <article class="prod reveal sold-out">
-        <div class="prod-img">
-          <span class="badge sold-out-badge">Sin stock</span>
           <img src="assets/mate5.jpg" alt="Mate Torpedo de Calabaza con virola cincelada">
         </div>
         <div class="prod-body">
@@ -747,27 +744,70 @@
         </div>
       </article>
 
-      <article class="prod reveal sold-out">
+      <article class="prod reveal">
         <div class="prod-img">
-          <span class="badge sold-out-badge">Sin stock</span>
+          <img src="assets/mate-ranchero.jpg" alt="Mate Ranchero Negro con corteza natural">
+        </div>
+        <div class="prod-body">
+          <h3>Mate Ranchero Negro</h3>
+          <p class="desc">Madera natural con detalles de corteza negra. Pieza rústica y única, hecha a mano.</p>
+          <div class="prod-foot"><span class="price-tag">$29.800</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+
+      <article class="prod reveal">
+        <div class="prod-img">
+          <span class="badge gift">Bombilla de regalo</span>
+          <img src="assets/mate-galleta.jpg" alt="Mate Galleta con base de madera natural">
+        </div>
+        <div class="prod-body">
+          <h3>Mate Galleta</h3>
+          <p class="desc">Calabaza galleta con base de madera natural tallada con el sol argentino. <strong>Incluye bombilla de regalo.</strong></p>
+          <div class="prod-foot"><span class="price-tag">$22.000</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+
+      <article class="prod reveal">
+        <div class="prod-img">
+          <img src="assets/torpedo-acero.jpg" alt="Mate Torpedo de Acero Suela con base de cuero">
+        </div>
+        <div class="prod-body">
+          <h3>Torpedo de Acero Suela</h3>
+          <p class="desc">Forma torpedo forrado en cuero suela con virola de acero inoxidable. Diseño elegante y resistente.</p>
+          <div class="prod-foot"><span class="price-tag">$27.500</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+
+      <article class="prod reveal">
+        <div class="prod-img">
+          <img src="assets/torpedo-acero-negro.jpg" alt="Mate Torpedo de Acero Negro con base de cuero">
+        </div>
+        <div class="prod-body">
+          <h3>Torpedo de Acero Negro</h3>
+          <p class="desc">Forma torpedo forrado en cuero negro con virola de acero inoxidable. Línea sobria y resistente.</p>
+          <div class="prod-foot"><span class="price-tag">$27.500</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+
+      <article class="prod reveal">
+        <div class="prod-img">
+          <img src="assets/mate-ranchero-2.jpg" alt="Mate Ranchero Blanco con detalles blancos">
+        </div>
+        <div class="prod-body">
+          <h3>Mate Ranchero Blanco</h3>
+          <p class="desc">Madera natural con detalle blanco tallado. Pieza rústica y única, hecha a mano.</p>
+          <div class="prod-foot"><span class="price-tag">$29.800</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+
+      <article class="prod reveal">
+        <div class="prod-img">
           <img src="assets/mate6.jpg" alt="Mate Criollo de calabaza con base de cuero crudo">
         </div>
         <div class="prod-body">
           <h3>Criollo Cuero Crudo</h3>
-          <p class="desc">Calabaza tradicional con base de cuero crudo trenzado. Vuelve pronto.</p>
-          <div class="prod-foot"><span class="price-tag">$20.000</span><button class="prod-btn sold-out-btn" type="button" disabled>Sin stock</button></div>
-        </div>
-      </article>
-
-      <article class="prod reveal sold-out">
-        <div class="prod-img">
-          <span class="badge sold-out-badge">Sin stock</span>
-          <img src="assets/mate7.jpg" alt="Mate Imperial de Calabaza con virola cincelada roble">
-        </div>
-        <div class="prod-body">
-          <h3>Imperial de Calabaza · Cincelado Roble</h3>
-          <p class="desc">Calabaza con virola de alpaca cincelada con motivo roble. Vuelve pronto.</p>
-          <div class="prod-foot"><span class="price-tag">$32.000</span><button class="prod-btn sold-out-btn" type="button" disabled>Sin stock</button></div>
+          <p class="desc">Calabaza tradicional con base de cuero crudo trenzado. El de toda la vida.</p>
+          <div class="prod-foot"><span class="price-tag">$20.000</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
         </div>
       </article>
 
@@ -806,6 +846,15 @@
           <h3>Torneada de Alpaca y Bronce</h3>
           <p class="desc">Alpaca torneada con boquilla de bronce. Vuelve pronto.</p>
           <div class="bomb-foot"><span class="price-tag">$16.000</span><button class="prod-btn sold-out-btn" type="button" disabled>Sin stock</button></div>
+        </div>
+      </article>
+
+      <article class="bomb reveal">
+        <div class="bomb-img"><img src="assets/bombilla-pico-loro.jpg" alt="Bombilla Pico de Loro Cincelado Artesanal"></div>
+        <div class="bomb-body">
+          <h3>Pico de Loro Cincelado Artesanal</h3>
+          <p class="desc">Acero inoxidable 304 con caña cincelada artesanalmente. Pico de loro clásico.</p>
+          <div class="bomb-foot"><span class="price-tag">$8.300</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
         </div>
       </article>
     </div>
@@ -1245,7 +1294,7 @@
     var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
     window.open(url, '_blank');
   });
-  } catch(cartErr) { /* Si falla el carrito entero, el sitio igual abre */ }
+  } catch(cartErr) {}
 
   /* ============== Review form ============== */
   try {
@@ -1308,5 +1357,34 @@
 
 </body>
 </html>
+ renderCart(); } catch(e){}
+</script>
+
+</body>
+</html>
 .open(url, '_blank');
-        try { showToast('¡Gracias! Llevamos tu opinión a WhatsApp'); } cat
+        try { showToast('¡Gracias! Llevamos tu opinión a WhatsApp'); } catch(e){}
+      });
+    }
+  } catch(e){}
+
+  /* ============== Toast ============== */
+  var toastT;
+  function showToast(text){
+    try {
+      var t = document.getElementById('toast');
+      var m = document.getElementById('toastMsg');
+      if(!t || !m) return;
+      m.textContent = text;
+      t.classList.add('show');
+      clearTimeout(toastT);
+      toastT = setTimeout(function(){ t.classList.remove('show'); }, 2200);
+    } catch(e){}
+  }
+
+  try { if(typeof renderCart === 'function') renderCart(); } catch(e){}
+</script>
+
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
