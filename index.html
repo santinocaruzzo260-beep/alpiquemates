@@ -724,22 +724,22 @@
 
       <article class="prod reveal">
         <div class="prod-img">
-          <img src="assets/camionero-calabaza-cincelado.jpg" alt="Mate Camionero de Calabaza Cincelado">
+          <img src="assets/camionero-calabaza-cincelado.jpg" alt="Mate Camionero de Algarrobo">
         </div>
         <div class="prod-body">
-          <h3>Camionero de Calabaza Cincelado</h3>
-          <p class="desc">Calabaza negra con virola de bronce cincelada y base con pie. Diseño imponente.</p>
+          <h3>Camionero de Algarrobo</h3>
+          <p class="desc">Algarrobo macizo con virola de bronce cincelada y base con pie. Diseño imponente.</p>
           <div class="prod-foot"><span class="price-tag">$22.500</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
         </div>
       </article>
 
       <article class="prod reveal">
         <div class="prod-img">
-          <img src="assets/camionero-algarrobo.jpg" alt="Mate Camionero de Algarrobo">
+          <img src="assets/camionero-algarrobo.jpg" alt="Mate Camionero de Calabaza Cincelado">
         </div>
         <div class="prod-body">
-          <h3>Camionero de Algarrobo</h3>
-          <p class="desc">Algarrobo macizo con virola de alpaca lisa. Clásico noble que dura toda la vida.</p>
+          <h3>Camionero de Calabaza Cincelado</h3>
+          <p class="desc">Calabaza con virola de alpaca cincelada. Clásico noble que dura toda la vida.</p>
           <div class="prod-foot"><span class="price-tag">$24.900</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
         </div>
       </article>
@@ -808,6 +808,18 @@
           <h3>Criollo Cuero Crudo</h3>
           <p class="desc">Calabaza tradicional con base de cuero crudo trenzado. El de toda la vida.</p>
           <div class="prod-foot"><span class="price-tag">$20.000</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+        </div>
+      </article>
+
+      <article class="prod reveal sold-out">
+        <div class="prod-img">
+          <span class="badge sold-out-badge">Sin stock</span>
+          <img src="assets/mate7.jpg" alt="Mate Imperial de Calabaza con virola cincelada roble">
+        </div>
+        <div class="prod-body">
+          <h3>Imperial de Calabaza · Cincelado Roble</h3>
+          <p class="desc">Calabaza con virola de alpaca cincelada con motivo roble. Vuelve pronto.</p>
+          <div class="prod-foot"><span class="price-tag">$32.000</span><button class="prod-btn sold-out-btn" type="button" disabled>Sin stock</button></div>
         </div>
       </article>
 
@@ -1357,34 +1369,3 @@
 
 </body>
 </html>
- renderCart(); } catch(e){}
-</script>
-
-</body>
-</html>
-.open(url, '_blank');
-        try { showToast('¡Gracias! Llevamos tu opinión a WhatsApp'); } catch(e){}
-      });
-    }
-  } catch(e){}
-
-  /* ============== Toast ============== */
-  var toastT;
-  function showToast(text){
-    try {
-      var t = document.getElementById('toast');
-      var m = document.getElementById('toastMsg');
-      if(!t || !m) return;
-      m.textContent = text;
-      t.classList.add('show');
-      clearTimeout(toastT);
-      toastT = setTimeout(function(){ t.classList.remove('show'); }, 2200);
-    } catch(e){}
-  }
-
-  try { if(typeof renderCart === 'function') renderCart(); } catch(e){}
-</script>
-
-</body>
-</html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
