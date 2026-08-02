@@ -339,6 +339,86 @@
   .bomb .desc{font-size:13px;color:#6c6356;min-height:38px}
   .bomb-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:16px;border-top:1px dashed rgba(107,42,31,.18)}
 
+  /* ---------- Personalización ---------- */
+  .perso{
+    background:linear-gradient(135deg,var(--bordo) 0%,var(--bordo-oscuro) 100%);
+    color:var(--crema-claro);position:relative;overflow:hidden;
+  }
+  .perso::before{
+    content:"";position:absolute;top:-100px;right:-100px;
+    width:400px;height:400px;border-radius:50%;
+    background:radial-gradient(circle,rgba(212,165,92,.18),transparent 70%);
+    pointer-events:none;
+  }
+  .perso::after{
+    content:"";position:absolute;bottom:-150px;left:-100px;
+    width:500px;height:500px;border-radius:50%;
+    background:radial-gradient(circle,rgba(212,165,92,.12),transparent 70%);
+    pointer-events:none;
+  }
+  .perso-card{
+    display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;
+    position:relative;z-index:2;
+  }
+  @media (max-width:900px){.perso-card{grid-template-columns:1fr;gap:40px;text-align:center}}
+  .badge-new{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--dorado);color:var(--bordo-oscuro);
+    font-weight:800;font-size:11px;letter-spacing:.24em;
+    padding:8px 16px;border-radius:999px;margin-bottom:20px;
+    box-shadow:0 8px 20px -8px rgba(212,165,92,.6);
+  }
+  .badge-new::before{content:"✦";font-size:14px}
+  .perso h2{
+    font-family:'Fraunces',serif;font-size:clamp(38px,5.5vw,64px);
+    line-height:1.02;color:var(--crema-claro);letter-spacing:-.01em;
+  }
+  .perso h2 em{font-style:italic;color:var(--dorado);font-weight:400}
+  .perso .lead{
+    margin-top:20px;font-size:17px;color:rgba(241,231,210,.85);
+    max-width:520px;line-height:1.6;
+  }
+  @media (max-width:900px){.perso .lead{margin-left:auto;margin-right:auto}}
+  .perso-features{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;
+  }
+  @media (max-width:900px){.perso-features{justify-content:center}}
+  .perso-feat{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(241,231,210,.08);border:1px solid rgba(241,231,210,.15);
+    padding:8px 14px;border-radius:999px;font-size:13px;color:var(--crema-claro);
+  }
+  .perso-feat::before{content:"✓";color:var(--dorado);font-weight:700}
+  .perso-price{
+    margin:32px 0 28px;display:flex;align-items:baseline;gap:12px;
+    padding:20px 24px;background:rgba(0,0,0,.2);border-radius:16px;
+    border:1px solid rgba(212,165,92,.25);width:fit-content;
+  }
+  @media (max-width:900px){.perso-price{margin-left:auto;margin-right:auto}}
+  .perso-price .plus{font-family:'Fraunces',serif;font-size:28px;color:var(--dorado);font-weight:700;line-height:1}
+  .perso-price .num{font-family:'Fraunces',serif;font-size:56px;color:var(--dorado);font-weight:800;line-height:1}
+  .perso-price .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,231,210,.7);max-width:120px;line-height:1.3}
+  .perso .btn-primary{background:var(--crema-claro);color:var(--bordo);padding:16px 28px}
+  .perso .btn-primary:hover{background:#fff;transform:translateY(-2px);box-shadow:0 15px 30px -10px rgba(0,0,0,.4)}
+
+  .perso-visual{
+    position:relative;height:400px;display:flex;align-items:center;justify-content:center;
+  }
+  @media (max-width:900px){.perso-visual{height:320px}}
+  .perso-mate-svg{
+    width:280px;height:340px;
+    animation:float 6s ease-in-out infinite;
+  }
+  .perso-tag{
+    position:absolute;background:var(--dorado);color:var(--bordo-oscuro);
+    padding:10px 16px;border-radius:12px;font-size:13px;font-weight:700;
+    box-shadow:0 12px 30px -8px rgba(0,0,0,.4);
+    display:flex;align-items:center;gap:8px;
+  }
+  .perso-tag-1{top:40px;left:0;animation:float2 5s ease-in-out infinite}
+  .perso-tag-2{top:130px;right:0;animation:float2 6s ease-in-out infinite reverse}
+  .perso-tag-3{bottom:60px;left:20px;animation:float2 7s ease-in-out infinite}
+
   /* ---------- Historia ---------- */
   .historia{
     background:var(--bordo);color:var(--crema-claro);
@@ -625,8 +705,8 @@
     <div class="nav-links" id="navLinks">
       <a href="#productos">Mates</a>
       <a href="#bombillas">Bombillas</a>
+      <a href="#personalizacion">Personalizar</a>
       <a href="#historia">Historia</a>
-      <a href="#proceso">Proceso</a>
     </div>
     <button class="cart-btn" id="cartBtn" aria-label="Abrir carrito">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
@@ -687,15 +767,15 @@
 
     <div class="prod-grid">
 
-      <article class="prod reveal">
+      <article class="prod reveal sold-out">
         <div class="prod-img">
-          <span class="badge">Destacado</span>
+          <span class="badge sold-out-badge">Sin stock</span>
           <img src="assets/imperial-cincelado.jpg" alt="Mate Imperial Cincelado con virola de alpaca">
         </div>
         <div class="prod-body">
           <h3>Imperial Cincelado</h3>
-          <p class="desc">Cuero negro con virola de alpaca cincelada con motivos criollos y base con pie. Línea premium.</p>
-          <div class="prod-foot"><span class="price-tag">$32.000</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+          <p class="desc">Cuero negro con virola de alpaca cincelada con motivos criollos. Vuelve pronto.</p>
+          <div class="prod-foot"><span class="price-tag">$32.000</span><button class="prod-btn sold-out-btn" type="button" disabled>Sin stock</button></div>
         </div>
       </article>
 
@@ -745,14 +825,15 @@
         </div>
       </article>
 
-      <article class="prod reveal">
+      <article class="prod reveal sold-out">
         <div class="prod-img">
+          <span class="badge sold-out-badge">Sin stock</span>
           <img src="assets/camionero-algarrobo.jpg" alt="Mate Camionero de Calabaza Cincelado">
         </div>
         <div class="prod-body">
           <h3>Camionero de Calabaza Cincelado</h3>
-          <p class="desc">Calabaza con virola de alpaca cincelada. Clásico noble que dura toda la vida.</p>
-          <div class="prod-foot"><span class="price-tag">$24.900</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
+          <p class="desc">Calabaza con virola de alpaca cincelada. Vuelve pronto.</p>
+          <div class="prod-foot"><span class="price-tag">$24.900</span><button class="prod-btn sold-out-btn" type="button" disabled>Sin stock</button></div>
         </div>
       </article>
 
@@ -792,15 +873,14 @@
         </div>
       </article>
 
-      <article class="prod reveal sold-out">
+      <article class="prod reveal">
         <div class="prod-img">
-          <span class="badge sold-out-badge">Sin stock</span>
           <img src="assets/torpedo-acero-negro.jpg" alt="Mate Torpedo de Acero Negro con base de cuero">
         </div>
         <div class="prod-body">
           <h3>Torpedo de Acero Negro</h3>
-          <p class="desc">Forma torpedo forrado en cuero negro con virola de acero inoxidable. Vuelve pronto.</p>
-          <div class="prod-foot"><span class="price-tag">$27.500</span><button class="prod-btn sold-out-btn" type="button" disabled>Sin stock</button></div>
+          <p class="desc">Forma torpedo forrado en cuero negro con virola de acero inoxidable. Línea sobria y resistente.</p>
+          <div class="prod-foot"><span class="price-tag">$27.500</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
         </div>
       </article>
 
@@ -885,6 +965,64 @@
           <div class="bomb-foot"><span class="price-tag">$8.300</span><button class="prod-btn add-btn" type="button">Agregar +</button></div>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PERSONALIZACIÓN ============== -->
+<section id="personalizacion" class="perso">
+  <div class="wrap">
+    <div class="perso-card reveal">
+      <div class="perso-content">
+        <span class="badge-new">Nuevo</span>
+        <h2>Personalizá tu <em>mate</em></h2>
+        <p class="lead">Ahora podés grabar tu nombre, iniciales, un dibujo o una fecha especial en cualquier mate del catálogo. Un detalle único que lo hace tuyo para siempre.</p>
+        <div class="perso-features">
+          <span class="perso-feat">Nombres</span>
+          <span class="perso-feat">Iniciales</span>
+          <span class="perso-feat">Fechas</span>
+          <span class="perso-feat">Frases cortas</span>
+        </div>
+        <div class="perso-price">
+          <span class="plus">+</span>
+          <span class="num">$5.000</span>
+          <span class="lbl">sobre el precio del mate</span>
+        </div>
+        <a href="https://wa.me/5491146733333?text=Hola!%20Quiero%20personalizar%20un%20mate" target="_blank" rel="noopener" class="btn btn-primary">Pedir personalización <span class="arrow">→</span></a>
+      </div>
+      <div class="perso-visual">
+        <div class="perso-tag perso-tag-1">✨ Único</div>
+        <div class="perso-tag perso-tag-2">🎁 Ideal regalo</div>
+        <div class="perso-tag perso-tag-3">✍️ Hecho a mano</div>
+        <svg class="perso-mate-svg" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- bombilla -->
+          <g transform="translate(115 20) rotate(15)">
+            <rect x="-3" y="0" width="6" height="90" rx="2" fill="#d4a55c"/>
+            <rect x="-5" y="82" width="10" height="14" rx="2" fill="#b8852a"/>
+            <ellipse cx="0" cy="2" rx="8" ry="3" fill="#f1e7d2"/>
+          </g>
+          <!-- virola -->
+          <ellipse cx="100" cy="90" rx="52" ry="12" fill="#d4a55c"/>
+          <ellipse cx="100" cy="88" rx="52" ry="12" fill="#e8c17d"/>
+          <ellipse cx="100" cy="88" rx="44" ry="8" fill="#8e3d1c"/>
+          <!-- cuerpo mate -->
+          <path d="M55 92 Q52 95 52 100 L58 200 Q60 220 100 220 Q140 220 142 200 L148 100 Q148 95 145 92 Z" fill="#1a0a02"/>
+          <path d="M55 92 Q52 95 52 100 L58 200 Q60 220 100 220 Q140 220 142 200 L148 100 Q148 95 145 92 Z" fill="url(#gm)" opacity=".6"/>
+          <!-- Grabado destacado -->
+          <rect x="70" y="130" width="60" height="42" rx="4" fill="none" stroke="#d4a55c" stroke-width="1.5" stroke-dasharray="3 3" opacity=".7"/>
+          <text x="100" y="152" text-anchor="middle" font-family="Fraunces, serif" font-size="18" fill="#d4a55c" font-weight="700">M A</text>
+          <text x="100" y="168" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#d4a55c" opacity=".8" letter-spacing="1">TU NOMBRE</text>
+          <!-- base pie -->
+          <path d="M80 220 L75 235 L90 235 L100 220 L110 235 L125 235 L120 220 Z" fill="#0d0700"/>
+          <defs>
+            <linearGradient id="gm" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#4a2818" stop-opacity=".8"/>
+              <stop offset="50%" stop-color="#1a0a02" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#4a2818" stop-opacity=".8"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
     </div>
   </div>
 </section>
